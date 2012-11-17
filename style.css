@@ -1,0 +1,15 @@
+#canvas-container {
+  position: absolute;
+  top: 370px;
+  left: 10px;
+  width: 640px;
+}
+
+#c {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
