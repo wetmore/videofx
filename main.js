@@ -7,6 +7,35 @@ $(document).ready(function() {
     
     makeInput(vars, $('#sliders'), '');
 
+    var $vid = $('#vid');
+    $('#hidevid').toggle(function() {
+      $vid.animate({
+        top: -360
+      });
+      this.innerText = 'Show video';
+    }, function() {
+      $vid.animate({
+        top: 0
+      });
+      this.innerText = 'Hide video';
+    });
+
+    $('#sliders').append('<br>Select a video<br>');
+    $('#sliders').append('<select><option>Mountain</option><option>Fireworks</option></select>');
+
+    $('select').change(function() {
+      var source;
+      switch (this.value) {
+        case 'Mountain':
+          source = 'videos/mountain.webm';
+          break;
+        
+        case 'Fireworks':
+          source = 'videos/fireworks.webm';
+          break;
+      }
+      $('video').attr('src', source);
+    });
 
 });
 

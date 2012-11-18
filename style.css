@@ -30,5 +30,8 @@ input {
 
 #vid {
   position: absolute;
+}
 
+select {
+  font-size: 1em;
 }
