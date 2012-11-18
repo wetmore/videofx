@@ -63,12 +63,14 @@ function effect(type, videoId, canvasId, options) {
       // handle options which will be returned by the effect function
       // and therefore can be changed after the effect is created
       vars.radius     = def(options.radius, 10);
-      vars.brightness = def(options.brightness, 1);
       vars.borders    = def(options.borders, false);
       vars.flicker.on = typeof options.flicker === 'object'; 
+      
       if (!vars.flicker.on) {
         options.flicker = {};
       }
+      
+      vars.flicker.brightness = def(options.flicker.brightness, 1);
       vars.flicker.speed    = def(options.flicker.speed, 5);
       vars.flicker.strength = def(options.flicker.strength, 0.5);
       vars.flicker.spacing  = def(options.flicker.spacing, 1);
@@ -133,7 +135,7 @@ function effect(type, videoId, canvasId, options) {
           for (var i = 0; i < data.length; i += 4) {
             var row = Math.floor(i / (w * 4)); // note: the 4 is because each
                                                // pixel takes 4 array entries
-            var factor = 1 / vars.brightness; // start with baseline brightness
+            var factor = 1 / vars.flicker.brightness; // start with baseline brightness
             // then add the brightness from the sine lookup table, based on row
             factor += lookup[(Math.floor(row / vars.flicker.spacing) + t) % lookup.length] * vars.flicker.strength; 
             // modify the RGB pixels based on the above computed factor
